@@ -7,8 +7,8 @@ class Rover {
     constructor(direction: Direction) {
         this.direction = direction
     }
-    getDirection(): any {
-        throw new Error("Method not implemented.");
+    getDirection(): Direction {
+        return this.direction
     }
     receiveSignal(signal: string) {
         if (signal === '') {
@@ -18,6 +18,7 @@ class Rover {
         if (!signal.match(/^[fblr]+$/)) {
             throw new Error('invalid signal')
         }
+        const characters = signal.split("")
     }
 }
 
