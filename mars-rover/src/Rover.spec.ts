@@ -6,12 +6,26 @@ class Rover {
     private direction: Direction;
     private actionForSignal: Record<string, () => void> = {
         'l': this.turnLeft.bind(this),
+        'r': this.turnRight.bind(this),
     }
     constructor(direction: Direction) {
         this.direction = direction
     }
     private turnLeft() {
-        this.direction = 'W'
+        const facingIndex = facing.indexOf(this.direction)
+        if (facingIndex === 0) {
+            this.direction = 'W'
+            return
+        }
+        this.direction = facing[facingIndex - 1]
+    };
+    private turnRight() {
+        const facingIndex = facing.indexOf(this.direction)
+        if (facingIndex === 3) {
+            this.direction = 'N'
+            return
+        }
+        this.direction = facing[facingIndex + 1]
     };
 
     getDirection(): Direction {
@@ -41,7 +55,6 @@ describe('Rover', () => {
         expect(() => rover.receiveSignal('fll1frr')).toThrowError('invalid signal')
         expect(() => rover.receiveSignal('fblr')).not.toThrowError('invalid signal')
     });
-
     it('throws on empty input', () => {
         // arrange
         const rover = new Rover('N');
@@ -49,14 +62,37 @@ describe('Rover', () => {
         // assert
         expect(() => rover.receiveSignal('')).toThrowError('empty signal')
     });
-
     it('should turn left', () => {
         // arrange
-        const rover = new Rover('N');
+        const rover = new Rover('E');
         // act
         rover.receiveSignal('l')
         // assert
-        expect(rover.getDirection()).toBe('W')
+        expect(rover.getDirection()).toBe('N')
+    });
+    it('should make a 360', () => {
+        // arrange
+        const rover = new Rover('E');
+        // act
+        rover.receiveSignal('llll')
+        // assert
+        expect(rover.getDirection()).toBe('E')
+    });
+    it('should turn right', () => {
+        // arrange
+        const rover = new Rover('E');
+        // act
+        rover.receiveSignal('r')
+        // assert
+        expect(rover.getDirection()).toBe('S')
+    });
+    it('should end up in the same direction', () => {
+        // arrange
+        const rover = new Rover('E');
+        // act
+        rover.receiveSignal('rlrlrl')
+        // assert
+        expect(rover.getDirection()).toBe('E')
     });
 });
 /*
