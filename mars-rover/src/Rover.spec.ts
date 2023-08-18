@@ -4,6 +4,8 @@
 class Rover {
 
     receiveSignal(signal: string) {
+
+        if (signal) ^ [fblr] + $
         throw new Error("invalid signal")
     }
 }
