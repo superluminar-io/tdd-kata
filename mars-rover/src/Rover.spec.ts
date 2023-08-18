@@ -1,11 +1,11 @@
 // import Rover from './Rover';
 
-type Direction = 'W' | 'N' | 'S' | 'E'
-
+const facing = ['N', 'E', 'S', 'W'] as const
+type Direction = typeof facing[number]
 class Rover {
     private direction: Direction;
     private actionForSignal: Record<string, () => void> = {
-        'l': this.turnLeft,
+        'l': this.turnLeft.bind(this),
     }
     constructor(direction: Direction) {
         this.direction = direction
@@ -26,7 +26,7 @@ class Rover {
             throw new Error('invalid signal')
         }
         const characters = signal.split("")
-        for (const character in characters) {
+        for (const character of characters) {
             this.actionForSignal[character]()
         }
     }
