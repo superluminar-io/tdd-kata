@@ -4,22 +4,32 @@
 class Rover {
 
     receiveSignal(signal: string) {
+        if (signal === '') {
+            throw new Error('empty signal')
+        }
 
-        if (signal) ^ [fblr] + $
-        throw new Error("invalid signal")
+        if (!signal.match(/^[fblr]+$/)) {
+            throw new Error('invalid signal')
+        }
     }
 }
 
 describe('Rover', () => {
-    it('only accepts valid inputs', () => {
-
+    it('throws on invalid input', () => {
         // arrange
         const rover = new Rover();
         // act
-        // rover.receiveSignal('fll1frr');
         // assert
-        expect(() => rover.receiveSignal('fll1frr')).toThrowError("invalid signal")
-        expect(() => rover.receiveSignal('fllfrr')).not.toThrowError("invalid signal")
+        expect(() => rover.receiveSignal('fll1frr')).toThrowError('invalid signal')
+        expect(() => rover.receiveSignal('fblr')).not.toThrowError('invalid signal')
+    });
+
+    it('throws on empty input', () => {
+        // arrange
+        const rover = new Rover();
+        // act
+        // assert
+        expect(() => rover.receiveSignal('')).toThrowError('empty signal')
     });
 });
 /*
