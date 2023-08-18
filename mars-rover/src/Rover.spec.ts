@@ -1,5 +1,12 @@
-//import Rover from './Rover';
+// import Rover from './Rover';
 
+
+class Rover {
+
+    receiveSignal(signal: string) {
+        throw new Error("invalid signal")
+    }
+}
 
 describe('Rover', () => {
     it('only accepts valid inputs', () => {
@@ -9,7 +16,8 @@ describe('Rover', () => {
         // act
         // rover.receiveSignal('fll1frr');
         // assert
-        expect(() => rover.receiveSignal('fll1frr')).toThrowError()
+        expect(() => rover.receiveSignal('fll1frr')).toThrowError("invalid signal")
+        expect(() => rover.receiveSignal('fllfrr')).not.toThrowError("invalid signal")
     });
 });
 /*
