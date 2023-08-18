@@ -1,8 +1,15 @@
 // import Rover from './Rover';
 
+type Direction = 'W' | 'N' | 'S' | 'E'
 
 class Rover {
-
+    private direction: Direction;
+    constructor(direction: Direction) {
+        this.direction = direction
+    }
+    getDirection(): any {
+        throw new Error("Method not implemented.");
+    }
     receiveSignal(signal: string) {
         if (signal === '') {
             throw new Error('empty signal')
@@ -17,7 +24,7 @@ class Rover {
 describe('Rover', () => {
     it('throws on invalid input', () => {
         // arrange
-        const rover = new Rover();
+        const rover = new Rover('N');
         // act
         // assert
         expect(() => rover.receiveSignal('fll1frr')).toThrowError('invalid signal')
@@ -26,10 +33,19 @@ describe('Rover', () => {
 
     it('throws on empty input', () => {
         // arrange
-        const rover = new Rover();
+        const rover = new Rover('N');
         // act
         // assert
         expect(() => rover.receiveSignal('')).toThrowError('empty signal')
+    });
+
+    it('should turn left', () => {
+        // arrange
+        const rover = new Rover('N');
+        // act
+        rover.receiveSignal('l')
+        // assert
+        expect(rover.getDirection()).toBe('W')
     });
 });
 /*
