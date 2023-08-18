@@ -15,3 +15,12 @@
 ## Rules
 - Hardcore TDD. No Excuses!
 - Be careful about edge cases and exceptions. We can not afford to lose our mars rover!
+
+## Tasks
+
+[x] rover only accepts valid inputs  
+[x] l turns left  
+[x] r turns right  
+[x] rover can return current direction  
+[ ] f moves forward  
+[ ] b moves backward  
