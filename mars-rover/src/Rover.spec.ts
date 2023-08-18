@@ -4,9 +4,16 @@ type Direction = 'W' | 'N' | 'S' | 'E'
 
 class Rover {
     private direction: Direction;
+    private actionForSignal: Record<string, () => void> = {
+        'l': this.turnLeft,
+    }
     constructor(direction: Direction) {
         this.direction = direction
     }
+    private turnLeft() {
+        this.direction = 'W'
+    };
+
     getDirection(): Direction {
         return this.direction
     }
@@ -19,6 +26,9 @@ class Rover {
             throw new Error('invalid signal')
         }
         const characters = signal.split("")
+        for (const character in characters) {
+            this.actionForSignal[character]()
+        }
     }
 }
 
