@@ -75,6 +75,11 @@ describe('Rover', () => {
             signal: 'frfrfrf',
             expectedPosition: {x: 0, y: 0},
         },
+        {
+            startingDirection: 'N' as Direction,
+            signal: 'fb',
+            expectedPosition: {x: 0, y: 0},
+        },
     ]
 
     it.each(cases)('should move to $expectedPosition on input $signal when facing $startingDirection', (input) => {
