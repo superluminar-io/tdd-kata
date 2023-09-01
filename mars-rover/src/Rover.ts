@@ -1,6 +1,13 @@
+import { MarsMap } from './MarsMap';
+
 const facing = ['N', 'E', 'S', 'W'] as const;
 export type Direction = typeof facing[number]
 type Position = { x: number; y: number }
+
+export interface RoverProps {
+  readonly map: MarsMap;
+  readonly position?: Position;
+};
 
 export class Rover {
   #direction: Direction;
@@ -12,10 +19,12 @@ export class Rover {
     b: this.backward.bind(this),
   };
   #position: Position;
+  #map: MarsMap;
 
-  constructor(direction: Direction, position: Position = { x: 0, y: 0 }) {
+  constructor(direction: Direction, props: RoverProps) {
     this.#direction = direction;
-    this.#position = position;
+    this.#position = props.position ?? { x: 0, y: 0 };
+    this.#map = props.map;
   }
 
   get direction(): Direction {
@@ -23,6 +32,9 @@ export class Rover {
   }
   get position(): Position {
     return this.#position;
+  }
+  get map() {
+    return this.#map;
   }
 
   private forward() {
