@@ -1,4 +1,4 @@
-import { Rover } from './Rover';
+import { Rover, Direction } from './Rover';
 
 describe('Rover', () => {
   it('throws on invalid input', () => {
@@ -79,6 +79,23 @@ describe('Rover', () => {
     const receivedPosition = rover.position;
     // assert
     expect(receivedPosition).toStrictEqual(expectedPosition);
+  });
+
+  const cases = [
+    { direction: 'N' as Direction, 
+      signal: 'b',
+      expectedPosition: { x: 0, y: -1 },
+    },
+  ]
+  
+  it.each(cases)("validateEmail(%s) should be %s", (input) => {
+    // arrange
+    const rover = new Rover(input.direction);
+    rover.receiveSignal(input.signal);
+    // act
+    const receivedPosition = rover.position;
+    // assert
+    expect(receivedPosition).toStrictEqual(input.expectedPosition);
   });
 });
 /*

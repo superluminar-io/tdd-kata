@@ -1,5 +1,5 @@
 const facing = ['N', 'E', 'S', 'W'] as const;
-type Direction = typeof facing[number]
+export type Direction = typeof facing[number]
 type Position = { x: number; y: number }
 
 export class Rover {
