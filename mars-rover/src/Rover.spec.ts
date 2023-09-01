@@ -48,16 +48,16 @@ describe('Rover', () => {
         // assert
         expect(rover.direction).toBe('E')
     });
-    //
-    // it('should return position', () => {
-    //     // arrange
-    //     const expectedPosition = {x: 0, y: 0};
-    //     const rover = new Rover('E');
-    //     // act
-    //     const receivedPosition = rover.getPosition();
-    //     // assert
-    //     expect(roverdirection).toBe('E')
-    // });
+
+    it('should return position', () => {
+        // arrange
+        const expectedPosition = {x: 0, y: 0};
+        const rover = new Rover('E');
+        // act
+        const receivedPosition = rover.position;
+        // assert
+        expect(receivedPosition).toStrictEqual(expectedPosition)
+    });
 });
 /*
 You are given the initial starting point (x,y) of a rover and the direction (N,S,E,W) it is facing.

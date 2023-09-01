@@ -1,5 +1,6 @@
 const facing = ['N', 'E', 'S', 'W'] as const
 type Direction = typeof facing[number]
+type Position = { x: number, y: number }
 
 export class Rover {
     #direction: Direction;
@@ -8,13 +9,18 @@ export class Rover {
         'l': this.turnLeft.bind(this),
         'r': this.turnRight.bind(this),
     }
+    #position: Position;
 
-    constructor(direction: Direction) {
+    constructor(direction: Direction, position: Position = {x: 0, y: 0}) {
         this.#direction = direction
+        this.#position = position
     }
 
     get direction(): Direction {
         return this.#direction
+    }
+    get position(): Position {
+        return this.#position
     }
 
     private turnLeft() {
