@@ -8,6 +8,8 @@ export class Rover {
   private actionForSignal: Record<string, () => void> = {
     l: this.turnLeft.bind(this),
     r: this.turnRight.bind(this),
+    f: this.forward.bind(this),
+    b: this.backward.bind(this),
   };
   #position: Position;
 
@@ -21,6 +23,26 @@ export class Rover {
   }
   get position(): Position {
     return this.#position;
+  }
+
+  private forward() {
+    switch (this.#direction) {
+      case 'E':
+        this.#position.x++;
+        break;
+      case 'N':
+        this.#position.y++;
+        break;
+      case 'W':
+        this.#position.x--;
+        break;
+      case 'S':
+        this.#position.y--;
+        break;
+    }
+  }
+
+  private backward() {
   }
 
   private turnLeft() {
