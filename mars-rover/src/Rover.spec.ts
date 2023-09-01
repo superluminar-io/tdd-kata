@@ -1,50 +1,4 @@
-// import Rover from './Rover';
-
-const facing = ['N', 'E', 'S', 'W'] as const
-type Direction = typeof facing[number]
-class Rover {
-    private direction: Direction;
-    private actionForSignal: Record<string, () => void> = {
-        'l': this.turnLeft.bind(this),
-        'r': this.turnRight.bind(this),
-    }
-    constructor(direction: Direction) {
-        this.direction = direction
-    }
-    private turnLeft() {
-        const facingIndex = facing.indexOf(this.direction)
-        if (facingIndex === 0) {
-            this.direction = 'W'
-            return
-        }
-        this.direction = facing[facingIndex - 1]
-    };
-    private turnRight() {
-        const facingIndex = facing.indexOf(this.direction)
-        if (facingIndex === 3) {
-            this.direction = 'N'
-            return
-        }
-        this.direction = facing[facingIndex + 1]
-    };
-
-    getDirection(): Direction {
-        return this.direction
-    }
-    receiveSignal(signal: string) {
-        if (signal === '') {
-            throw new Error('empty signal')
-        }
-
-        if (!signal.match(/^[fblr]+$/)) {
-            throw new Error('invalid signal')
-        }
-        const characters = signal.split("")
-        for (const character of characters) {
-            this.actionForSignal[character]()
-        }
-    }
-}
+import {Rover} from './Rover';
 
 describe('Rover', () => {
     it('throws on invalid input', () => {
@@ -68,7 +22,7 @@ describe('Rover', () => {
         // act
         rover.receiveSignal('l')
         // assert
-        expect(rover.getDirection()).toBe('N')
+        expect(rover.direction).toBe('N')
     });
     it('should make a 360', () => {
         // arrange
@@ -76,7 +30,7 @@ describe('Rover', () => {
         // act
         rover.receiveSignal('llll')
         // assert
-        expect(rover.getDirection()).toBe('E')
+        expect(rover.direction).toBe('E')
     });
     it('should turn right', () => {
         // arrange
@@ -84,7 +38,7 @@ describe('Rover', () => {
         // act
         rover.receiveSignal('r')
         // assert
-        expect(rover.getDirection()).toBe('S')
+        expect(rover.direction).toBe('S')
     });
     it('should end up in the same direction', () => {
         // arrange
@@ -92,8 +46,18 @@ describe('Rover', () => {
         // act
         rover.receiveSignal('rlrlrl')
         // assert
-        expect(rover.getDirection()).toBe('E')
+        expect(rover.direction).toBe('E')
     });
+    //
+    // it('should return position', () => {
+    //     // arrange
+    //     const expectedPosition = {x: 0, y: 0};
+    //     const rover = new Rover('E');
+    //     // act
+    //     const receivedPosition = rover.getPosition();
+    //     // assert
+    //     expect(roverdirection).toBe('E')
+    // });
 });
 /*
 You are given the initial starting point (x,y) of a rover and the direction (N,S,E,W) it is facing.
