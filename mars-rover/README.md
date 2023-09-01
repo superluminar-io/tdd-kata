@@ -22,5 +22,9 @@
 [x] l turns left  
 [x] r turns right  
 [x] rover can return current direction  
-[ ] f moves forward  
-[ ] b moves backward  
+[x] f moves forward  
+[x] b moves backward  
+[ ] create map containing obstacles  
+[ ] implement wrapping at edges  
+[ ] obstacle detection  
+[ ] path finding algorithm (dijkstra or a*)  
