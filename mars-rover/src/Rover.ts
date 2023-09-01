@@ -43,6 +43,20 @@ export class Rover {
   }
 
   private backward() {
+    switch (this.#direction) {
+      case 'E':
+        this.#position.x--;
+        break;
+      case 'N':
+        this.#position.y--;
+        break;
+      case 'W':
+        this.#position.x++;
+        break;
+      case 'S':
+        this.#position.y++;
+        break;
+    }
   }
 
   private turnLeft() {

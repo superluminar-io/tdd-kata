@@ -60,9 +60,21 @@ describe('Rover', () => {
   });
 
   it('should move forward on "f"', () => {
+    // arrange
     const expectedPosition = { x: 0, y: 1 };
     const rover = new Rover('N');
     rover.receiveSignal('f');
+    // act
+    const receivedPosition = rover.position;
+    // assert
+    expect(receivedPosition).toStrictEqual(expectedPosition);
+  });
+
+  it('should move backward on b', () => {
+    // arrange
+    const expectedPosition = { x: 0, y: -1 };
+    const rover = new Rover('N');
+    rover.receiveSignal('b');
     // act
     const receivedPosition = rover.position;
     // assert
