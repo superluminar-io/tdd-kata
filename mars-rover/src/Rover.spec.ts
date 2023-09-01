@@ -1,63 +1,63 @@
-import {Rover} from './Rover';
+import { Rover } from './Rover';
 
 describe('Rover', () => {
-    it('throws on invalid input', () => {
-        // arrange
-        const rover = new Rover('N');
-        // act
-        // assert
-        expect(() => rover.receiveSignal('fll1frr')).toThrowError('invalid signal')
-        expect(() => rover.receiveSignal('fblr')).not.toThrowError('invalid signal')
-    });
-    it('throws on empty input', () => {
-        // arrange
-        const rover = new Rover('N');
-        // act
-        // assert
-        expect(() => rover.receiveSignal('')).toThrowError('empty signal')
-    });
-    it('should turn left', () => {
-        // arrange
-        const rover = new Rover('E');
-        // act
-        rover.receiveSignal('l')
-        // assert
-        expect(rover.direction).toBe('N')
-    });
-    it('should make a 360', () => {
-        // arrange
-        const rover = new Rover('E');
-        // act
-        rover.receiveSignal('llll')
-        // assert
-        expect(rover.direction).toBe('E')
-    });
-    it('should turn right', () => {
-        // arrange
-        const rover = new Rover('E');
-        // act
-        rover.receiveSignal('r')
-        // assert
-        expect(rover.direction).toBe('S')
-    });
-    it('should end up in the same direction', () => {
-        // arrange
-        const rover = new Rover('E');
-        // act
-        rover.receiveSignal('rlrlrl')
-        // assert
-        expect(rover.direction).toBe('E')
-    });
+  it('throws on invalid input', () => {
+    // arrange
+    const rover = new Rover('N');
+    // act
+    // assert
+    expect(() => rover.receiveSignal('fll1frr')).toThrowError('invalid signal');
+    expect(() => rover.receiveSignal('fblr')).not.toThrowError('invalid signal');
+  });
+  it('throws on empty input', () => {
+    // arrange
+    const rover = new Rover('N');
+    // act
+    // assert
+    expect(() => rover.receiveSignal('')).toThrowError('empty signal');
+  });
+  it('should turn left', () => {
+    // arrange
+    const rover = new Rover('E');
+    // act
+    rover.receiveSignal('l');
+    // assert
+    expect(rover.direction).toBe('N');
+  });
+  it('should make a 360', () => {
+    // arrange
+    const rover = new Rover('E');
+    // act
+    rover.receiveSignal('llll');
+    // assert
+    expect(rover.direction).toBe('E');
+  });
+  it('should turn right', () => {
+    // arrange
+    const rover = new Rover('E');
+    // act
+    rover.receiveSignal('r');
+    // assert
+    expect(rover.direction).toBe('S');
+  });
+  it('should end up in the same direction', () => {
+    // arrange
+    const rover = new Rover('E');
+    // act
+    rover.receiveSignal('rlrlrl');
+    // assert
+    expect(rover.direction).toBe('E');
+  });
 
-    it('should return position', () => {
-        // arrange
-        const expectedPosition = {x: 0, y: 0};
-        const rover = new Rover('E');
-        // act
-        const receivedPosition = rover.position;
-        // assert
-        expect(receivedPosition).toStrictEqual(expectedPosition)
-    });
+  it('should return position', () => {
+    // arrange
+    const expectedPosition = { x: 0, y: 0 };
+    const rover = new Rover('E');
+    // act
+    const receivedPosition = rover.position;
+    // assert
+    expect(receivedPosition).toStrictEqual(expectedPosition);
+  });
 });
 /*
 You are given the initial starting point (x,y) of a rover and the direction (N,S,E,W) it is facing.
