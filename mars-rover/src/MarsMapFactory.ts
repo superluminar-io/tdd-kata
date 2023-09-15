@@ -1,9 +1,7 @@
 export class MarsMapFactory {
 
   createMarsMap(width: number, height: number, amountOfObstacles: number) {
-    const map = new Array(height).fill(
-      () => new Array(width).fill(0),
-    );
+    const map = new Array(height).fill(undefined).map(() => new Array(width).fill(0));
 
     if (amountOfObstacles === 3) {
       map[0][0] = 1;
