@@ -2,7 +2,7 @@ import { MarsMap } from './MarsMap';
 import { Rover, Direction } from './Rover';
 
 const defaultProps = {
-  map: new MarsMap(100, 100),
+  map: new MarsMap(100, 100, 0),
 };
 
 describe('Rover', () => {
@@ -66,7 +66,7 @@ describe('Rover', () => {
 
   it('should return the map', () => {
     // arrange
-    const marsMap = new MarsMap(100, 1000);
+    const marsMap = new MarsMap(100, 1000, 0);
     const rover = new Rover('E', {
       map: marsMap,
     });
