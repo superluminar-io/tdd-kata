@@ -19,18 +19,19 @@ describe('MarsMapFactory', () => {
     const expectedMarsMapObstacles = 3;
     const marsMap = marsMapFactory.createMarsMap(5, 5, 3);
 
-    assertMapsMapContainsAmountOfObstacles(marsMap, expectedMarsMapObstacles);
+    assertMapsMapContainsNumberOfObstacles(marsMap, expectedMarsMapObstacles);
   });
 });
 
-function assertMapsMapContainsAmountOfObstacles(marsMap: any[], expectedMarsMapObstacles: number) {
-  let amountOfObstacles = 0;
+// TODO: refactor this to be a matcher
+function assertMapsMapContainsNumberOfObstacles(marsMap: any[], expectedMarsMapObstacles: number) {
+  let numberOfObstacles = 0;
 
   marsMap.forEach((row) => row.forEach((cell:any) => {
     if (cell === 1) {
-      amountOfObstacles++;
+      numberOfObstacles++;
     }
   }));
 
-  expect(amountOfObstacles).toBe(expectedMarsMapObstacles);
+  expect(numberOfObstacles).toBe(expectedMarsMapObstacles);
 }
